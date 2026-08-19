@@ -1,5 +1,6 @@
 # ClientPulse — Plataforma SaaS B2B Single-Tenant para Gestión de Clientes, Proyectos y Facturación
 
+[![Live Demo](https://img.shields.io/badge/Live_Demo-GitHub_Pages-success?style=flat-square&logo=github&logoColor=white)](https://alxnrocha.github.io/mini-saas/)
 [![React 19](https://img.shields.io/badge/React-19.0-61DAFB?style=flat-square&logo=react&logoColor=black)](https://react.dev/)
 [![TypeScript](https://img.shields.io/badge/TypeScript-5.7-3178C6?style=flat-square&logo=typescript&logoColor=white)](https://www.typescriptlang.org/)
 [![Tailwind CSS v4](https://img.shields.io/badge/Tailwind_CSS-v4.0-38B2AC?style=flat-square&logo=tailwind-css&logoColor=white)](https://tailwindcss.com/)
@@ -14,7 +15,8 @@
 [![Oxlint](https://img.shields.io/badge/Linter-Oxlint-orange?style=flat-square)](https://oxc.rs/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
-> **Proyecto 14 del Portafolio Profesional** — Plataforma SaaS Single-Tenant de analítica comercial, administración de contratos de clientes, entregables de proyectos y facturación automatizada para agencias digitales y consultorías B2B.
+> **Proyecto 14 del Portafolio Profesional** — Plataforma SaaS Single-Tenant de analítica comercial, administración de contratos de clientes, entregables de proyectos y facturación automatizada para agencias digitales y consultorías B2B.  
+> 🔗 **Demo en Vivo en GitHub Pages:** [https://alxnrocha.github.io/mini-saas/](https://alxnrocha.github.io/mini-saas/)
 
 ---
 
