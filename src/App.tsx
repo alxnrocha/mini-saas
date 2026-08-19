@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React from 'react';
 import { AppShell } from './components/layout/AppShell.tsx';
 import { ExecutiveDashboard } from './components/dashboard/ExecutiveDashboard.tsx';
-import {
-  CURRENT_USER,
-  MOCK_KPI_METRICS,
-  MOCK_BILLING_TRAJECTORY,
-  MOCK_PROJECTS_BY_STATUS,
-} from './data/mockSaaSData.ts';
-import { NavigationTab } from './types/saas.ts';
+import { NewClientModal } from './components/clients/NewClientModal.tsx';
+import { ClientDetailModal } from './components/clients/ClientDetailModal.tsx';
+import { useSaaSStore } from './stores/useSaaSStore.ts';
+import { CURRENT_USER, MOCK_KPI_METRICS, MOCK_BILLING_TRAJECTORY, MOCK_PROJECTS_BY_STATUS } from './data/mockSaaSData.ts';
 
 export default function App(): React.JSX.Element {
-  const [activeTab, setActiveTab] = useState<NavigationTab>('dashboard');
-  const [searchQuery, setSearchQuery] = useState<string>('');
+  const {
+    clients,
+    projects,
+    invoices,
+    activeTab,
+    searchQuery,
+    isNewClientModalOpen,
+    selectedClientDetail,
+    setActiveTab,
+    setSearchQuery,
+    setNewClientModalOpen,
+    setSelectedClientDetail,
+    addClient,
+    updateClientStatus,
+    deleteClient,
+  } = useSaaSStore();
 
   return (
     <AppShell
@@ -20,7 +31,7 @@ export default function App(): React.JSX.Element {
       onTabChange={setActiveTab}
       searchQuery={searchQuery}
       onSearchChange={setSearchQuery}
-      onOpenNewClientModal={() => console.log('Open new client modal')}
+      onOpenNewClientModal={() => setNewClientModalOpen(true)}
     >
       {activeTab === 'dashboard' && (
         <ExecutiveDashboard
@@ -28,20 +39,56 @@ export default function App(): React.JSX.Element {
           kpis={MOCK_KPI_METRICS}
           billingData={MOCK_BILLING_TRAJECTORY}
           projectsDistribution={MOCK_PROJECTS_BY_STATUS}
+          clients={clients}
+          onSelectClient={setSelectedClientDetail}
+          onUpdateClientStatus={updateClientStatus}
+          onDeleteClient={deleteClient}
+          onOpenNewClientModal={() => setNewClientModalOpen(true)}
           onNavigateToProjects={() => setActiveTab('projects')}
         />
       )}
 
-      {activeTab !== 'dashboard' && (
+      {activeTab === 'clients' && (
+        <div className="space-y-6">
+          <ExecutiveDashboard
+            user={CURRENT_USER}
+            kpis={MOCK_KPI_METRICS}
+            billingData={MOCK_BILLING_TRAJECTORY}
+            projectsDistribution={MOCK_PROJECTS_BY_STATUS}
+            clients={clients}
+            onSelectClient={setSelectedClientDetail}
+            onUpdateClientStatus={updateClientStatus}
+            onDeleteClient={deleteClient}
+            onOpenNewClientModal={() => setNewClientModalOpen(true)}
+            onNavigateToProjects={() => setActiveTab('projects')}
+          />
+        </div>
+      )}
+
+      {activeTab !== 'dashboard' && activeTab !== 'clients' && (
         <div className="p-8 rounded-2xl bg-[#101726]/80 border border-slate-800 space-y-4">
           <h3 className="text-2xl font-bold text-white capitalize">
             {activeTab} Management
           </h3>
           <p className="text-slate-400 text-sm">
-            This module will be fully populated in Milestone 3.
+            This module will be rendered with full functionality.
           </p>
         </div>
       )}
+
+      {/* Modals */}
+      <NewClientModal
+        isOpen={isNewClientModalOpen}
+        onClose={() => setNewClientModalOpen(false)}
+        onSubmitClient={addClient}
+      />
+
+      <ClientDetailModal
+        client={selectedClientDetail}
+        projects={projects}
+        invoices={invoices}
+        onClose={() => setSelectedClientDetail(null)}
+      />
     </AppShell>
   );
 }

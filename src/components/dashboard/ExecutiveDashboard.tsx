@@ -3,11 +3,14 @@ import { Calendar, ChevronDown } from 'lucide-react';
 import { KpiMetricCard } from './KpiMetricCard.tsx';
 import { BillingOverviewChart } from './BillingOverviewChart.tsx';
 import { ProjectsStatusDonut } from './ProjectsStatusDonut.tsx';
+import { RecentClientsTable } from '../clients/RecentClientsTable.tsx';
 import {
   UserProfile,
   KpiMetricCard as KpiMetricCardType,
   BillingTrajectoryPoint,
   ProjectStatusDistribution,
+  ClientAccount,
+  ClientStatus,
 } from '../../types/saas.ts';
 
 interface ExecutiveDashboardProps {
@@ -15,6 +18,11 @@ interface ExecutiveDashboardProps {
   kpis: KpiMetricCardType[];
   billingData: BillingTrajectoryPoint[];
   projectsDistribution: ProjectStatusDistribution[];
+  clients: ClientAccount[];
+  onSelectClient: (client: ClientAccount) => void;
+  onUpdateClientStatus: (clientId: string, status: ClientStatus) => void;
+  onDeleteClient: (clientId: string) => void;
+  onOpenNewClientModal?: () => void;
   onNavigateToProjects?: () => void;
 }
 
@@ -23,6 +31,11 @@ export const ExecutiveDashboard: React.FC<ExecutiveDashboardProps> = ({
   kpis,
   billingData,
   projectsDistribution,
+  clients,
+  onSelectClient,
+  onUpdateClientStatus,
+  onDeleteClient,
+  onOpenNewClientModal,
   onNavigateToProjects,
 }) => {
   return (
@@ -70,6 +83,15 @@ export const ExecutiveDashboard: React.FC<ExecutiveDashboardProps> = ({
           />
         </div>
       </div>
+
+      {/* Lower Row: Recent Clients Table matching design.png */}
+      <RecentClientsTable
+        clients={clients}
+        onSelectClient={onSelectClient}
+        onUpdateStatus={onUpdateClientStatus}
+        onDeleteClient={onDeleteClient}
+        onOpenNewClientModal={onOpenNewClientModal}
+      />
     </div>
   );
 };
