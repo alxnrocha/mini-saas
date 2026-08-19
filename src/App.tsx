@@ -1,20 +1,27 @@
-import React from 'react';
-import { Activity } from 'lucide-react';
+import React, { useState } from 'react';
+import { AppShell } from './components/layout/AppShell.tsx';
+import { CURRENT_USER } from './data/mockSaaSData.ts';
+import { NavigationTab } from './types/saas.ts';
 
 export default function App(): React.JSX.Element {
+  const [activeTab, setActiveTab] = useState<NavigationTab>('dashboard');
+  const [searchQuery, setSearchQuery] = useState<string>('');
+
   return (
-    <div className="min-h-screen bg-[#090D16] text-slate-100 flex flex-col items-center justify-center p-6">
-      <div className="saas-card p-8 rounded-2xl max-w-md w-full text-center space-y-4 shadow-2xl">
-        <div className="inline-flex p-3 rounded-full bg-indigo-500/10 text-indigo-400">
-          <Activity className="w-8 h-8" />
-        </div>
-        <h1 className="text-3xl font-bold text-white tracking-wide">
-          ClientPulse SaaS
-        </h1>
+    <AppShell
+      user={CURRENT_USER}
+      activeTab={activeTab}
+      onTabChange={setActiveTab}
+      searchQuery={searchQuery}
+      onSearchChange={setSearchQuery}
+      onOpenNewClientModal={() => console.log('Open new client modal')}
+    >
+      <div className="space-y-6">
+        <h2 className="text-2xl font-bold text-white capitalize">{activeTab} View</h2>
         <p className="text-slate-400 text-sm">
-          Single-Tenant B2B Client, Project & Invoicing SaaS Platform.
+          ClientPulse SaaS layout shell active.
         </p>
       </div>
-    </div>
+    </AppShell>
   );
 }
