@@ -29,5 +29,6 @@ dist-ssr
 .env.*
 !.env.example
 
-# Local progress tracking
+# Local progress tracking & internal notes
 STATUS_PROGRESSO.md
+design/PROMPTS.md

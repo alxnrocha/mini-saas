@@ -10,7 +10,7 @@
 [![Oxlint](https://img.shields.io/badge/Linter-Oxlint-orange?style=flat-square)](https://oxc.rs/)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg?style=flat-square)](LICENSE)
 
-> **Proyecto 14 del Portafolio Profesional** — Plataforma SaaS Single-Tenant de analítica comercial, administración de contratos de clientes, entregables de proyectos y facturación automatizada para agencias digitales y consultorías B2B. Construido bajo la metodología **FORGE-DEV**.
+> **Proyecto 14 del Portafolio Profesional** — Plataforma SaaS Single-Tenant de analítica comercial, administración de contratos de clientes, entregables de proyectos y facturación automatizada para agencias digitales y consultorías B2B.
 
 ---
 
@@ -67,7 +67,6 @@
 │   ├── seed.sql                 # Datos determinísticos de prueba
 │   └── README.md                # Diagrama DER Mermaid y diccionario
 ├── design/
-│   ├── PROMPTS.md               # Prompts de generación para IA visual
 │   └── design.png               # Mockup visual de referencia
 ├── prisma/
 │   └── schema.prisma            # Schema Prisma 6 con índices y cascadas
