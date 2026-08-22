@@ -1,3 +1,4 @@
+import { ProjectBadge } from './components/ProjectBadge';
 import React from 'react';
 import { AppShell } from './components/layout/AppShell.tsx';
 import { ExecutiveDashboard } from './components/dashboard/ExecutiveDashboard.tsx';
@@ -162,7 +163,8 @@ export default function App(): React.JSX.Element {
               </div>
             </div>
           </div>
-        </div>
+              <ProjectBadge />
+    </div>
       )}
 
       {/* Modals */}
